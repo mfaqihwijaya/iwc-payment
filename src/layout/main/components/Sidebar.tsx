@@ -29,6 +29,17 @@ export default function Sidebar() {
         >
           Santri
         </NavLink>
+
+        <NavLink
+          to="/kamar"
+          className={({ isActive }) =>
+            `p-2 rounded ${
+              isActive ? "bg-blue-500" : "hover:bg-gray-700"
+            }`
+          }
+        >
+          Kamar
+        </NavLink>
       </nav>
     </aside>
   );

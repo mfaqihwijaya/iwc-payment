@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
-import type { Santri } from "./types/santri.type";
-import { getSantri } from "./services/santri.service";
+import { useEffect, useState } from "react";
 import Td from "./components/Td";
 import Th from "./components/Th";
-import StatusBadge from "./components/StatusBadge";
+import { getKamar } from "./services/kamar.service";
+import type { Kamar } from "./types/kamar.type";
 
-export default function UserPage() {
+export default function KamarPage() {
   const [search, setSearch] = useState("");
-  const [santriList, setSantriList] = useState<Santri[]>([]);
-    
+  const [kamarList, setKamarList] = useState<Kamar[]>([]);
+  
   useEffect(() => {
-    getSantri().then(setSantriList);
+    getKamar().then(setKamarList);
   }, []);
 
   return (
@@ -21,29 +20,29 @@ export default function UserPage() {
         <header className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-semibold text-gray-900">
-              Santri
+              Kamar
             </h1>
             <p className="text-sm text-gray-500">
-              Dashboard santri management
+              Dashboard manajemen kamar
             </p>
           </div>
 
           <button className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700">
-            Tambah Santri +
+            Tambah Kamar +
           </button>
         </header>
 
         {/* TOOLBAR */}
         <div className="bg-white border border-gray-200 rounded-md p-4 flex justify-between">
           <input
-            placeholder="Search Santri..."
+            placeholder="Cari kamar..."
             className="w-80 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
 
           <span className="text-sm text-gray-500">
-            {santriList.length} Santri
+            {kamarList.length} kamar
           </span>
         </div>
 
@@ -54,32 +53,21 @@ export default function UserPage() {
             {/* HEADER */}
             <thead className="bg-gray-50 text-gray-600">
               <tr>
-                <Th>Nama</Th>
+                <Th>Nama Kamar</Th>
                 <Th>Putra / Putri</Th>
-                <Th>Kamar</Th>
-                <Th>Jumlah Device</Th>
-                <Th>No Hp</Th>
-                <Th>Status</Th>
                 <Th align="right">Action</Th>
               </tr>
             </thead>
 
             {/* BODY */}
             <tbody>
-              {santriList.map((user) => (
+              {kamarList.map((kamar) => (
                 <tr
-                  key={user.id}
+                  key={kamar.id}
                   className="border-t border-gray-200 hover:bg-gray-50 transition"
                 >
-                  <Td strong>{user.name}</Td>
-                  <Td>{user.gender}</Td>
-                  <Td>{user.kamar_id}</Td>
-                  <Td>{user.devices_count}</Td>
-                  <Td>{user.phone_no}</Td>
-
-                  <Td>
-                    <StatusBadge status={user.status} />
-                  </Td>
+                  <Td strong>{kamar.name}</Td>
+                  <Td>{kamar.gender}</Td>
 
                   <Td align="right">
                     <button className="text-blue-600 hover:underline">

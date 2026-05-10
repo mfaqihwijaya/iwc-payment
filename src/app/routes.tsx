@@ -4,6 +4,7 @@ import DashboardLayout from "../layout/main/MainLayout";
 import DashboardPage from "../features/dashboard/DashboardPage";
 import SantriPage from "../features/santri/SantriPage";
 import SettingsPage from "../features/settings/SettingsPage";
+import KamarPage from "../features/kamar/KamarPage";
 
 export default function AppRoutes() {
   return (
@@ -12,6 +13,7 @@ export default function AppRoutes() {
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/santri" element={<SantriPage />} />
+          <Route path="/kamar" element={<KamarPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Routes>
