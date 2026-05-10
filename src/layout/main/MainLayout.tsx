@@ -9,7 +9,7 @@ export default function DashboardLayout() {
       <div className="flex flex-col flex-1">
         <Navbar />
 
-        <main className="p-6 overflow-auto">
+        <main className="overflow-auto">
           <Outlet />
         </main>
       </div>
